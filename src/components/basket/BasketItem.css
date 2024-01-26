@@ -1,0 +1,111 @@
+.basket-item {
+    background-color: #fff;
+    width: 800px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.basket-item__content { 
+
+}
+
+.basket-item__content-description {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.basket-item__content-delivery {
+    margin: 10px 5px;
+    display: flex;
+}
+
+.delivery-items {
+    display: flex;
+    margin-right: 5px;
+}
+
+.delivery-item {
+    margin-right: 5px;
+}
+
+.basket-item__img {
+    margin-left: 10px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 2px;
+}
+
+
+.content__description {
+    display: flex;
+    flex-direction: column;
+}
+
+.basket-item__item {
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+}
+
+.item__name {
+    font-size: 12px;
+}
+
+.item__price {
+    font-size: 20px;
+}
+
+.basket-item__characteristics {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.minus {
+    width: 15px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.minus:hover{
+    cursor: pointer;
+}
+
+.plus {
+    display: flex;
+    align-items: center;
+}
+
+.plus:hover {
+    cursor: pointer;
+}
+
+.garbage {
+    display: flex;
+    align-items: center;
+}
+
+.garbage:hover {
+    cursor: pointer;
+}
+
+.quantity {
+    width: 20px;
+    height: 20px;
+    background-color: #FC6423;
+    color: #fff;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+}

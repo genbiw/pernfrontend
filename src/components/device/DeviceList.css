@@ -1,0 +1,8 @@
+.device-list {
+    display: flex;
+}
+
+.device-list__container {
+    display: flex;
+    flex-wrap: wrap;
+}

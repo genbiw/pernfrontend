@@ -1,0 +1,18 @@
+.type-bar {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    background-color: #fff;
+    padding: 20px 20px 10px 20px;
+    border-radius: 5px;
+}
+
+.type-bar__item {
+    cursor: pointer;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.type-bar__item--active {
+    text-decoration: underline;
+} 

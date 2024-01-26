@@ -1,0 +1,57 @@
+.main-block {
+    width: 100%;
+}
+
+.block-new-parameters {
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;
+    /* Set a fixed height for the container */
+    overflow-y: auto;
+    /* Enable vertical scrollbar when content exceeds the container height */
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.button-parameter {
+    padding: 2px 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+    color: #000;
+    margin-bottom: 10px;
+    height: 30px;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.block-parameter-value {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+}
+
+.block-parameter-value-description {
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.block-parameter-value-button {
+    width: 80px;
+    display: flex;
+    justify-content: right;
+}
+
+.parameter-value {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 2px 5px;
+}
+
+.enter-parametr {
+    width: 270px;
+}

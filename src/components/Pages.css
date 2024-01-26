@@ -1,0 +1,15 @@
+.pages{
+    display: flex;
+}
+
+.pages__item {
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: beige;
+    border-radius: 5px;
+    cursor: pointer;
+}

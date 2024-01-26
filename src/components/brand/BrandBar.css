@@ -1,0 +1,18 @@
+.brand-bar {
+    display: flex;
+}
+ 
+.brand-bar__item {
+    width: 100px;
+    text-align: center;
+    margin: 0 15px;
+    padding: 5px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fff;
+    font-size: 12px;
+}
+
+.brand-bar__item--active {
+    text-decoration: underline;
+}

@@ -1,0 +1,60 @@
+.account {
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.account-menu {
+    width: 300px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-right: 20px;
+    padding: 20px;
+}
+
+.account-menu__property {
+    display: flex;
+    padding: 10px 0 5px 0;
+}
+
+.account-properties {
+    width: 1360px;
+
+}
+
+.account-property {
+    margin: 0 0 20px 0;
+    padding: 15px 40px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.section-name {
+    display: flex;
+    justify-content: space-between;
+}
+
+.property-name {
+    display: flex;
+}
+
+.input-underscore__block {
+    width: 250px;
+    display: flex;
+    border-bottom: 1px solid black;
+    position: relative;
+}
+
+.input-underscore {
+    border: none;
+    width: auto;
+    font-size: 10px;
+}
+
+.section-property {
+    margin-bottom: 15px;
+    font-size: 15px;
+}

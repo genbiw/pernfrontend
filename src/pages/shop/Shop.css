@@ -1,0 +1,14 @@
+.shop {
+    display: flex;
+}
+
+
+.shop__type-bar {
+    margin: 10px 10px 0 0;
+}
+
+.shop__content {
+    margin: 10px 0 0 0;
+    display: flex;
+    flex-direction: column;
+}

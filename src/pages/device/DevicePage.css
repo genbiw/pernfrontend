@@ -1,0 +1,154 @@
+.device-page {
+    width: 1280px;
+    margin: 0 auto;
+}
+
+.device-page__main-row {
+    margin: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.device-page__column-left {
+    width: 800px;
+    height: 500px;
+    background-color: #fff;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.device-page__title {
+    width: 370px;
+    margin: 20px 0 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.device-page__img {
+    align-self: center;
+    width: 370px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin: 0 0 0 20px;
+}
+
+.device-page__raiting {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.raiting__star {
+    margin-left: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.device-page__description {
+    width: 350px;
+    margin: 55px 20px 0 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.description__title {
+    font-size: 25px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.description__items {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+
+.description__item {
+    display: flex;
+    align-items: center;
+}
+
+.dots {
+    flex-grow: 1;
+    margin: 0 5px; /* Небольшой отступ по бокам */
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+}
+
+.dots::after {
+    content: '......................................................................................................................................................................................................................';
+    display: block;
+}
+
+.item-name {
+    white-space: nowrap;
+}
+
+.device-page__column-right {
+    width: 450px;
+    height: 500px;
+    background-color: #fff;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding-bottom: 70px;
+}
+
+.device-page__price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.price__number {
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+
+.device-page__button {
+    background-color: #FC6423;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #FAF2F2;
+}
+
+.device-page__button:hover {
+    cursor: pointer;
+}
+
+.device-page__characteristics {
+    width: 800px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.characteristics__title {
+    font-size: 25px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.characteristics-items {
+    display: flex;
+    
+}
+
+.characteristics-item-name {
+    white-space: nowrap;
+}
+
+.characteristics-item {
+    min-width: min-content; /* Минимальная ширина равна ширине содержимого */
+    max-width: 550px; /* Фиксированная максимальная ширина для длинных текстов */
+    overflow-wrap: break-word; /* Перенос слов на новую строку, если они не помещаются */
+}

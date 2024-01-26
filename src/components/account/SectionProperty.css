@@ -1,0 +1,23 @@
+.account_property-value {
+
+}
+
+.account_property-value.hide {
+    display: none;
+}
+
+
+.property-item__sign {
+    margin: 0 4px;
+    cursor: pointer;
+}
+
+.property-item__sign-pencil.hide {
+    display: none;
+}
+
+.property-item__sign svg {
+    width: 16px;
+    height: 16px;
+    fill: #000000;
+}
