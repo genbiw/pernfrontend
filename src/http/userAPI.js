@@ -19,7 +19,7 @@ export const check = async() => {
     return jwtDecode(data.token)
 } 
 
-export const updateUserAttribute = async(email, password, attributename, attributevalue) => {
-    const {data} = await $host.post("api/user/updateuser", {email, password, attributename, attributevalue})
+export const updateUserAttribute = async(email, attributename, attributevalue) => {
+    const {data} = await $authHost.post("api/user/updateuser", {email, attributename, attributevalue})
     return data
 } 

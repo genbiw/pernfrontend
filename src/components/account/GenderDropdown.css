@@ -5,8 +5,7 @@
 }
 
 .selected-gender {
-    padding: 8px;
-    border: 1px solid #ccc;
+    /* padding: 8px 0; */
     cursor: pointer;
 }
 

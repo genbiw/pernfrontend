@@ -48,6 +48,7 @@ const BasketItem = observer(({ itemId, quantity, setBasketModify }) => {
             }
         }else{
             basket.removeItem(itemId)
+            localStorage.setItem("basket", JSON.stringify(basket))
         }
     }
 

@@ -1,17 +1,30 @@
 import "./Account.css"
 import { UserIcon, Order, Favorite, Review, Phone, Pencil, Email, Password } from "../../utils/elements"
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Context } from "../..";
 import GenderDropdown from "../../components/account/GenderDropdown"
 import SectionProperty from "../../components/account/SectionProperty"
+import { observer } from 'mobx-react-lite'; 
 
-const Account = () => {
+const Account = observer(() => {
 
     const { user } = useContext(Context)
+    console.log(user.user)
 
-    const updateAccountUser = (updatedData) => {
+    const updateAccountUser = async (updatedData) => {
         user.setUser(updatedData);
     };
+
+    const { id, password, createdAt, updatedAt, email, role, iat, exp, ...userAttribute } = user.user
+
+    const userAttributeFinal = Object.keys(userAttribute).map(attr => ({
+        id: attr,
+        name: attr,
+        propertyName: attr.charAt(0).toUpperCase() + attr.slice(1),
+        propertyValue: userAttribute[attr],
+        type: typeof userAttribute[attr] === 'number' ? 'number' : 'text',
+        placeholder: `e.g. ${userAttribute[attr]}`
+    }));
 
     const sectionPropertyPhone = [
         {
@@ -64,58 +77,6 @@ const Account = () => {
     ]
 
 
-    const sectionPropertyMainInformation = [
-        {
-            id: "city",
-            name: "city",
-            propertyName: "City",
-            type: "text",
-            placeholder: "e.g. Almaty",
-            propertyValue: user.user.city
-        },
-        {
-            id: "username",
-            name: "username",
-            propertyName: "User Name",
-            type: "text",
-            placeholder: "e.g. Name",
-            propertyValue: user.user.name
-        },
-        {
-            id: "age",
-            name: "age",
-            propertyName: "Age",
-            propertyValue: user.user.age,
-            type: "number",
-            placeholder: "e.g. 122333444455"
-        },
-        {
-            id: "birthdate",
-            name: "birthdate",
-            propertyName: "Birth date",
-            propertyValue: "",
-            type: "text",
-            placeholder: "e.g. 22-11-2010"
-        },
-        {
-            id: "country",
-            name: "country",
-            propertyName: "Country",
-            propertyValue: user.user.country,
-            type: "text",
-            placeholder: "e.g. Croatia"
-        }
-        ,
-        {
-            id: "address",
-            name: "address",
-            propertyName: "Address",
-            propertyValue: user.user.address,
-            type: "text",
-            placeholder: "e.g. Istarska 157"
-        }
-    ]
-
     return (
         <div className="container account">
             <div className="account-menu">
@@ -123,7 +84,7 @@ const Account = () => {
                     <div className="property-item__sign"><UserIcon /></div>
                     <div>Person</div>
                 </div>
-                <div className="account-menu__property">
+                {/* <div className="account-menu__property">
                     <div className="property-item__sign"><Order /></div>
                     <div>My orders</div>
                 </div>
@@ -134,11 +95,11 @@ const Account = () => {
                 <div className="account-menu__property">
                     <div className="property-item__sign"><Review /></div>
                     <div>My reviews</div>
-                </div>
+                </div> */}
             </div>
             <div className="account-properties">
 
-                <div className="account-property">
+                {/* <div className="account-property">
                     <div className="section-name">
                         <div className="property-name">
                             <div className="property-item__sign"><Phone /></div>
@@ -152,9 +113,9 @@ const Account = () => {
                                 updateAccountUser={updateAccountUser} />
                         )
                     })}
-                </div>
+                </div> */}
 
-                <div className="account-property">
+                {/* <div className="account-property">
                     <div className="section-name">
                         <div className="property-name">
                             <div className="property-item__sign"><Email /></div>
@@ -167,9 +128,9 @@ const Account = () => {
                             <SectionProperty key={index} propertyName={item.propertyName} propertyValue={item.propertyValue} type={item.type} id={item.id} name={item.name} placeholder={item.placeholder} autoComplete={item.name} updateAccountUser={updateAccountUser} />
                         )
                     })}
-                </div>
+                </div> */}
 
-                <div className="account-property">
+                {/* <div className="account-property">
                     <div className="section-name">
                         <div className="property-name">
                             <div className="property-item__sign"><Password /></div>
@@ -182,7 +143,7 @@ const Account = () => {
                             <SectionProperty key={index} propertyName={item.propertyName} type={item.type} id={item.id} name={item.name} placeholder={item.placeholder} autoComplete={item.name} updateAccountUser={updateAccountUser} />
                         )
                     })}
-                </div>
+                </div> */}
 
                 <div className="account-property">
                     <div className="section-name">
@@ -190,16 +151,16 @@ const Account = () => {
                             <div className="property-item__sign"><UserIcon /></div>
                             <div>Main information</div>
                         </div>
-                        <div>+ ADD NEW</div>
+                        {/* <div>+ ADD NEW</div> */}
                     </div>
-                    <div className="section-property">
+                    {/* <div className="section-property">
                         <div>Gender</div>
                         <div className="input-underscore__block">
                             <GenderDropdown />
                             <div className="property-item__sign"><Pencil /></div>
                         </div>
-                    </div>
-                    {sectionPropertyMainInformation.map((item, index) => {
+                    </div> */}
+                    {userAttributeFinal.map((item, index) => {
                         return (
                             <SectionProperty key={index} propertyName={item.propertyName} propertyValue={item.propertyValue} type={item.type} id={item.id} name={item.name} placeholder={item.placeholder} autoComplete={item.name} updateAccountUser={updateAccountUser} />
                         )
@@ -209,6 +170,6 @@ const Account = () => {
             </div>
         </div>
     );
-}
+})
 
-export default Account; 
+export default Account;  

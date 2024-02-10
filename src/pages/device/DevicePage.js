@@ -46,6 +46,7 @@ const DevicePage = () => {
             } catch (e) {
                 alert(e.response.data.message)
             } finally {
+                localStorage.setItem("basket", JSON.stringify(basket))
                 setLoading(false)
             }
             

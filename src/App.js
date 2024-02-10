@@ -14,7 +14,6 @@ const App = observer(() => {
 
   useEffect(() => {
     setTimeout(() => {
-      if (user.isAuth) {
         check().then(data => {
           user.setUser(data)
           user.setIsAuth(true)
@@ -25,9 +24,6 @@ const App = observer(() => {
             // Optionally: set some state here to show a user-friendly message if desired
           })
           .finally(() => setLoading(false))
-      }else{
-        setLoading(false)
-      }
     }, 1000)
   }, [])
 

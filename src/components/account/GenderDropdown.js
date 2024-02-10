@@ -1,7 +1,7 @@
 import "./GenderDropdown.css"
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react"; 
 import { Context } from "../..";
-
+ 
 const GenderDropdown = () => {
 
     const { user } = useContext(Context)

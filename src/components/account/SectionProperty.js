@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import { Pencil, RejectSign, AcceptSign } from "../../utils/elements"
 import "./SectionProperty.css"
 import { updateUserAttribute } from "../../http/userAPI"
-import { Context } from "../.."
+import { Context } from "../.." 
 
 const SectionProperty = ({ propertyName, propertyValue, type, id, name, placeholder, autoComplete, updateAccountUser}) => {
 
@@ -12,16 +12,21 @@ const SectionProperty = ({ propertyName, propertyValue, type, id, name, placehol
     const [clicked, isClicked] = useState(false)
 
     const handleClick = () => {
-        isClicked(!clicked)
+        isClicked(!clicked) 
         
     }
 
     const updateAttribute = () => {
-        updateUserAttribute(user.user.email, "vova", name, value).then(data => updateAccountUser(data))
+        try{
+
+        }catch(e){
+            alert(e)
+        }
+        updateUserAttribute(user.user.email, name, value).then(data => updateAccountUser(data))
         isClicked(!clicked)
     }
 
-
+ 
 
     return (
         <div className="section-property" key={id}>

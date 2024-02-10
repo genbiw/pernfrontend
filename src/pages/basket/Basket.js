@@ -20,14 +20,14 @@ const Basket = observer(() => {
             fetchBrands().then(data => device.setBrands(data))
             fetchDevices(null, null, null, null).then(data => device.setDevices(data.rows))
         } else {
+            const localBasket = JSON.parse(localStorage.getItem("basket"))?.["_items"] || []
+            basket.setItems(localBasket)
             fetchTypes().then(data => device.setTypes(data))
             fetchBrands().then(data => device.setBrands(data))
             fetchDevices(null, null, null, null).then(data => device.setDevices(data.rows))
         }
 
     }, [])
-
-    console.log(basket)
 
     const totalPrice = () => {
         return basket.items.reduce((total, item) => {
@@ -49,25 +49,37 @@ const Basket = observer(() => {
     }
 
     const modifyBasket = async () => {
-        try {
-            setBasketModify(false)
-            setLoading(true)
-            await new Promise((resolve) => setTimeout(resolve, 3000)); //manual delay
-            const updatedBasketPromises = basket.items.map(async (item) => {
-                return await updateDevice(user.user.id, item.deviceId, item.quantity);
-            });
-
-            const updatedBasket = await Promise.all(updatedBasketPromises);
-
-            // Вероятно, вам нужно что-то сделать с обновленной корзиной, прежде чем ее возвращать
-            // Например, можно объединить элементы корзины в один массив
-            const combinedUpdatedBasket = [].concat(...updatedBasket);
-
-            return combinedUpdatedBasket;
-        } catch (e) {
-            console.error(e)
-        } finally {
-            setLoading(false)
+        if(user.isAuth === true){
+            try {
+                setBasketModify(false)
+                setLoading(true)
+                await new Promise((resolve) => setTimeout(resolve, 3000)); //manual delay
+                const updatedBasketPromises = basket.items.map(async (item) => {
+                    return await updateDevice(user.user.id, item.deviceId, item.quantity);
+                });
+    
+                const updatedBasket = await Promise.all(updatedBasketPromises);
+    
+                // Вероятно, вам нужно что-то сделать с обновленной корзиной, прежде чем ее возвращать
+                // Например, можно объединить элементы корзины в один массив
+                const combinedUpdatedBasket = [].concat(...updatedBasket);
+    
+                return combinedUpdatedBasket;
+            } catch (e) {
+                console.error(e)
+            } finally {
+                setLoading(false)
+            }
+        }else{
+            try {
+                setBasketModify(false)
+                setLoading(true)
+                localStorage.setItem("basket", JSON.stringify(basket))
+            }catch(e){
+                console.error(e)
+            }finally{
+                setLoading(false)
+            }
         }
     }
 
