@@ -93,6 +93,7 @@
 }
 
 .device-page__column-right {
+    position: relative;
     width: 450px;
     height: 500px;
     background-color: #fff;

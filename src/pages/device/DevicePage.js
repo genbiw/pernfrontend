@@ -5,24 +5,52 @@ import "./DevicePage.css"
 import { addDevice } from '../../http/basketAPI';
 import { Context } from '../../index';
 import { Star } from "../../utils/elements"
+import SectionLoading from '../../components/loading/SectionLoading';
 
 const DevicePage = () => {
     const [device, setDevice] = useState({ info: [] })
     const { id } = useParams()
-    const { user } = useContext(Context)
+    const { user, basket } = useContext(Context)
     const userId = user.user.id
+
+    const [lading, setLoading] = useState(false)
+    const [data, setData] = useState(null)
 
     useEffect(() => {
         fetchOneDevices(id).then(data => setDevice(data))
     }, [])
 
     const addDeviceToTheBasket = async () => {
-        try {
-            let data
-            data = await addDevice(userId, id)
-        } catch (e) {
-            alert(e.response.data.message)
+        if (user.isAuth === true) {
+            try {
+                setLoading(true)
+
+                await new Promise(resolve => setTimeout(resolve, 2000))
+
+                const response = await addDevice(userId, id)
+                setData(response)
+            } catch (e) {
+                alert(e.response.data.message)
+            } finally {
+                setLoading(false)
+            }
+        } else {
+            try {
+                setLoading(true)
+                const item = {
+                    "basketId": userId,
+                    "deviceId": device.id
+                }
+                await new Promise(resolve => setTimeout(resolve, 2000))
+                basket.addItem(item)
+            } catch (e) {
+                alert(e.response.data.message)
+            } finally {
+                setLoading(false)
+            }
+            
         }
+
     }
 
     return (
@@ -36,7 +64,7 @@ const DevicePage = () => {
                                 <div className='raiting__number'>
                                     {device.rating}
                                 </div>
-                                <div className='raiting__star' ><Star/></div>
+                                <div className='raiting__star' ><Star /></div>
                             </div>
                         </div>
                         <img className="device-page__img" src={process.env.REACT_APP_API_URL + device.img} />
@@ -64,6 +92,7 @@ const DevicePage = () => {
                 </div>
 
                 <div className='device-page__column-right' >
+                    {lading && <SectionLoading />}
                     <div className='device-page__price'>
                         <div className='price__number'>{device.price} Eur</div>
                         <div className='button device-page__button' onClick={addDeviceToTheBasket}>Add to the basket</div>
@@ -72,12 +101,12 @@ const DevicePage = () => {
             </div>
             <div className='device-page__characteristics'>
                 <div className='characteristics__title'>Characteristics</div>
-                {device.info.map((info, index) => 
-                <div key={info.id} className='characteristics-items'>
-                    <div className='characteristics-item-name'>{info.title}</div>
-                    <div className='dots'></div>
-                    <div className='characteristics-item'>{info.description}</div>
-                </div>
+                {device.info.map((info, index) =>
+                    <div key={info.id} className='characteristics-items'>
+                        <div className='characteristics-item-name'>{info.title}</div>
+                        <div className='dots'></div>
+                        <div className='characteristics-item'>{info.description}</div>
+                    </div>
 
                 )}
             </div>

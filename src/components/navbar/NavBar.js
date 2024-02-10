@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Context } from '../../index';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { ADMIN_ROUTE, LOGIN_ROUTE, SHOP_ROUTE, BASKET_ROUTE, ACCOUNT_ROUTE } from '../../utils/const';
@@ -12,7 +12,7 @@ import admin from "../../assets/admin.png"
 import { UserIcon } from "../../utils/elements"
 
 const NavBar = observer(() => {
-    
+
     const { user } = useContext(Context)
     const navigate = useNavigate()
 
@@ -24,40 +24,43 @@ const NavBar = observer(() => {
     }
 
     return (
+
+        <div className='navbar container'>
             
-            <div className='navbar container'>
+            <NavLink className="link logo" to={SHOP_ROUTE}>
+                <img width={50} height={50} src={logo} />
+            </NavLink>
+            {user.user.role === "ADMIN" &&
+                <div className="header__menu">
+                    <div className="icon header__user" onClick={() => navigate(ACCOUNT_ROUTE)}><UserIcon /></div>
+                    <div className="icon header__admin" onClick={() => navigate(ADMIN_ROUTE)}><img src={admin}></img></div>
+                    <div className="icon header__basket" onClick={() => {
+                        navigate(BASKET_ROUTE)
+                    }}><img src={basket}></img></div>
+                    <div className="icon header__logout" onClick={() => logOut()}><img src={logout}></img></div>
+                </div>}
 
-                <NavLink className="link logo" to={SHOP_ROUTE}>
-                    <img width={50} height={50} src={logo} />
-                </NavLink>
-                {user.user.role === "ADMIN" && user.isAuth === true &&
-                    <div className="header__menu">
-                        <div className="icon header__user" onClick={() => navigate(ACCOUNT_ROUTE)}><UserIcon/></div>
-                        
-                        <div className="icon header__admin" onClick={() => navigate(ADMIN_ROUTE)}><img src={admin}></img></div>
-                        <div className="icon header__basket" onClick={() => {
-                            navigate(BASKET_ROUTE)
-                        }}><img src={basket}></img></div>
-                        <div className="icon header__logout" onClick={() => logOut()}><img src={logout}></img></div>
-                    </div>}
+            {user.user.role === "USER" &&
+                <div className="header__menu">
+                    <div className="icon header__user" onClick={() => navigate(ACCOUNT_ROUTE)}><UserIcon /></div>
+                    <div className="icon header__basket" onClick={() => {
+                        navigate(BASKET_ROUTE)
+                    }}><img src={basket}></img></div>
+                    <div className="icon header__logout" onClick={() => logOut()}><img src={logout}></img></div>
+                </div>}
+            {user.isAuth === false &&
+                <div className="header__menu">
+                    <div className="icon header__basket" onClick={() => {
+                        navigate(BASKET_ROUTE)
+                    }}><img src={basket}></img></div>
+                    <div className="icon header__login" onClick={() => {
+                        navigate(LOGIN_ROUTE)
+                    }}><img src={login}></img></div>
+                </div>
+            }
 
-                {user.user.role === "USER" && user.isAuth === true &&
-                    <div className="d-flex" style={{ color: "white" }}>
-                        <div className="icon header__basket" onClick={() => {
-                            navigate(BASKET_ROUTE)
-                        }}><img src={basket}></img></div>
-                        <div className="icon header__logout" onClick={() => logOut()}><img src={logout}></img></div>
-                    </div>}
-                {user.isAuth === false &&
-                    <div>
-                        <div className="icon header__login" onClick={() => {
-                            navigate(LOGIN_ROUTE)
-                        }}><img src={login}></img></div>
-                    </div>
-                }
+        </div>
 
-            </div>
-       
     );
 });
 

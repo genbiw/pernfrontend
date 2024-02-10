@@ -17,11 +17,6 @@ export const authAdminRoutes = [
 export const authRoutes = [ 
     
     {
-        path: BASKET_ROUTE,
-        Component: <Basket/>
-    },
-
-    {
         path: PAYMENT_SUCCESS,
         Component: <PaymentSuccess/>
     },
@@ -33,6 +28,11 @@ export const authRoutes = [
 ]
 
 export const publicRoutes = [
+    {
+        path: BASKET_ROUTE,
+        Component: <Basket/>
+    },
+
     {
         path: SHOP_ROUTE,
         Component: <Shop/>

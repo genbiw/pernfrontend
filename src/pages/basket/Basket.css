@@ -4,8 +4,24 @@
 }
 
 .basket-left {
+    margin-top: 20px;
+    position: relative;
     display: flex;
     flex-direction: column;
+}
+
+.basket-left__button {
+    background-color: #FC6423;
+    width: 200px;
+    text-align: center;
+    padding: 5px;
+    margin-top: 15px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.basket-left__button:hover {
+    cursor: pointer;
 }
 
 .basket-right {
@@ -83,7 +99,6 @@
 .basketempty{
     width: 800px;
     height: 586px;
-    margin: 20px 0;
     padding: 200px 0;
     background-color: #fff;
     border-radius: 5px;

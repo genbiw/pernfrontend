@@ -1,10 +1,11 @@
-.basket-item {
+.basket-item { 
+    position: relative;
     background-color: #fff;
     width: 800px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px 0;
+    margin-bottom: 20px;
     padding: 5px 10px;
     border-radius: 5px;
 }
@@ -70,8 +71,6 @@
 }
 
 .minus {
-    width: 15px;
-    height: 15px;
     display: flex;
     align-items: center;
 }

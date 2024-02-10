@@ -9,7 +9,7 @@ import Pages from '../../components/Pages';
 import "./Shop.css"
 
 const Shop = observer(() => {
-    const {device} = useContext(Context)
+    const {device} = useContext(Context) 
 
     useEffect(() => {
         fetchTypes().then(data => device.setTypes(data))
@@ -19,13 +19,6 @@ const Shop = observer(() => {
             device.setTotalCount(data.count)
         })
     }, [])
-
-    // useEffect(() => {
-    //     fetchDevices(device.selectedType.id, device.selectedBrand.id, device.page, 12).then(data => {
-    //         device.setDevices(data.rows)
-    //         device.setTotalCount(data.count)
-    //     })
-    // }, [device.page, device.selectedType, device.selectedBrand])
 
     return (
         <div className='container'>

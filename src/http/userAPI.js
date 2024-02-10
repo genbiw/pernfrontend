@@ -15,11 +15,9 @@ export const login = async(email, password) => {
 
 export const check = async() => {
     const {data} = await $authHost.get("api/user/auth")
-    
     localStorage.setItem("token", data.token)
     return jwtDecode(data.token)
 } 
-
 
 export const updateUserAttribute = async(email, password, attributename, attributevalue) => {
     const {data} = await $host.post("api/user/updateuser", {email, password, attributename, attributevalue})

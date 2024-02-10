@@ -48,6 +48,12 @@
     height: 35px;
 }
 
+.header__login img{
+    margin-top: 4px;
+    width: 35px;
+    height: 35px;
+}
+
 .header__user svg {
     margin-top: 2px;
     width: 35px;
