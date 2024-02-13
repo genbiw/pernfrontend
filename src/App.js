@@ -7,12 +7,14 @@ import { useContext, useEffect, useState } from 'react';
 import { Context } from './index';
 import { check } from './http/userAPI';
 import PageLoading from './components/loading/PageLoading.js';
+import {initializePeopleSDK} from "./http/infobipPeople.js"
 
 const App = observer(() => {
   const { user } = useContext(Context)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    initializePeopleSDK("ff72a37f5301476f082cdbc60297da8a-be3d0a17-f2bf-460b-b2b8-48196cedec25")
     setTimeout(() => {
         check().then(data => {
           user.setUser(data)

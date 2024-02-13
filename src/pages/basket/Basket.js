@@ -7,6 +7,7 @@ import { fetchBrands, fetchDevices, fetchTypes } from '../../http/deviceAPI';
 import "./Basket.css"
 import { Coins, Card, Wallet, Bank, PaymentAtDelivery } from "../../utils/elements"
 import SectionLoading from '../../components/loading/SectionLoading';
+import {initializePeopleSDK} from "../../http/infobipPeople"
 
 const Basket = observer(() => {
     const { basket, user, device } = useContext(Context)
@@ -15,11 +16,13 @@ const Basket = observer(() => {
 
     useEffect(() => {
         if (user.isAuth) {
+            initializePeopleSDK("ff72a37f5301476f082cdbc60297da8a-be3d0a17-f2bf-460b-b2b8-48196cedec25")
             getBasket(user.user.id).then(data => basket.setItems(data))
             fetchTypes().then(data => device.setTypes(data))
             fetchBrands().then(data => device.setBrands(data))
             fetchDevices(null, null, null, null).then(data => device.setDevices(data.rows))
         } else {
+            initializePeopleSDK("ff72a37f5301476f082cdbc60297da8a-be3d0a17-f2bf-460b-b2b8-48196cedec25")
             const localBasket = JSON.parse(localStorage.getItem("basket"))?.["_items"] || []
             basket.setItems(localBasket)
             fetchTypes().then(data => device.setTypes(data))

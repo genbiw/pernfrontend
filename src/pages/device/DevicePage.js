@@ -6,6 +6,7 @@ import { addDevice } from '../../http/basketAPI';
 import { Context } from '../../index';
 import { Star } from "../../utils/elements"
 import SectionLoading from '../../components/loading/SectionLoading';
+import {initializePeopleSDK} from "../../http/infobipPeople"
 
 const DevicePage = () => {
     const [device, setDevice] = useState({ info: [] })
@@ -17,6 +18,7 @@ const DevicePage = () => {
     const [data, setData] = useState(null)
 
     useEffect(() => {
+        initializePeopleSDK("ff72a37f5301476f082cdbc60297da8a-be3d0a17-f2bf-460b-b2b8-48196cedec25")
         fetchOneDevices(id).then(data => setDevice(data))
     }, [])
 

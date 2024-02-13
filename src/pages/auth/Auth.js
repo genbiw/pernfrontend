@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../../utils/const';
 import { login, registration } from '../../http/userAPI';
@@ -6,8 +6,15 @@ import { observer } from 'mobx-react-lite';
 import { Context } from '../../index';
 import {SHOP_ROUTE} from "../../utils/const"
 import "./Auth.css"
+
+import {initializePeopleSDK, createPerson} from "../../http/infobipPeople"
  
 const Auth = observer(() => {
+
+    useEffect(()=>{
+        initializePeopleSDK("ff72a37f5301476f082cdbc60297da8a-be3d0a17-f2bf-460b-b2b8-48196cedec25")
+    },[])
+
     const { user } = useContext(Context)
     const location = useLocation()
     const navigate = useNavigate()
@@ -18,16 +25,20 @@ const Auth = observer(() => {
     const click = async () => {
         try {
             let data
+            let createPersonData
             if (isLogin) {
                 data = await login(email, password)
+                await window.pe.setPerson({email: email})
             } else {
                 data = await registration(email, password)
+                createPersonData = await createPerson(email)
+                await window.pe.setPerson({email: email})
             }
             user.setUser(data)
             user.setIsAuth(true)
             navigate(SHOP_ROUTE)
         } catch (e) {
-            alert(e.response.data.message) 
+            alert(e) 
         }
 
     }
