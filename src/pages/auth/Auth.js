@@ -33,6 +33,7 @@ const Auth = observer(() => {
                 data = await registration(email, password)
                 createPersonData = await createPerson(email)
                 await window.pe.setPerson({email: email})
+                await window.pe.track("registrationretail")
             }
             user.setUser(data)
             user.setIsAuth(true)

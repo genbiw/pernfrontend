@@ -10,13 +10,8 @@ import login from "../../assets/login.png"
 import basket from "../../assets/basket.png"
 import admin from "../../assets/admin.png"
 import { UserIcon } from "../../utils/elements"
-import {initializePeopleSDK} from "../../http/infobipPeople"
 
 const NavBar = observer(() => {
-
-    useEffect(()=>{
-        initializePeopleSDK("ff72a37f5301476f082cdbc60297da8a-be3d0a17-f2bf-460b-b2b8-48196cedec25")
-    },[])
 
     const { user } = useContext(Context)
     const navigate = useNavigate()

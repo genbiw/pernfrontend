@@ -7,6 +7,11 @@ import fbIcon from "../../assets/fb-icon.png"
 import vkIcon from "../../assets/vk-icon.png"
 
 const Footer = () => {
+
+    const subscribeToNews = async() => {
+        await window.pe.track("newslettersubscriptionretail")
+    }
+
     return ( 
         <div className="footer container">
             <div className="subscribe-block">
@@ -14,7 +19,7 @@ const Footer = () => {
                 <div>
                     <div className="subscribe-block__context">Subscribe to the latest updates and be the first to know about new products and special offers</div>
                     <input className="subscribe-block__input" type="text" name="email" placeholder="Email"/>
-                    <div className="button subscribe-block__button">Subscribe</div>
+                    <div className="button subscribe-block__button" onClick={subscribeToNews}>Subscribe</div>
                 </div>
             </div>
             <div className="social-block">

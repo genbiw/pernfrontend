@@ -14,6 +14,8 @@ const Basket = observer(() => {
     const [basketModified, setBasketModify] = useState(false)
     const [loading, setLoading] = useState(false)
 
+    console.log(basket.items.length)
+
     useEffect(() => {
         if (user.isAuth) {
             initializePeopleSDK("ff72a37f5301476f082cdbc60297da8a-be3d0a17-f2bf-460b-b2b8-48196cedec25")
@@ -21,6 +23,9 @@ const Basket = observer(() => {
             fetchTypes().then(data => device.setTypes(data))
             fetchBrands().then(data => device.setBrands(data))
             fetchDevices(null, null, null, null).then(data => device.setDevices(data.rows))
+            if(basket.items.length !== 0){
+                window.pe.track("shoppingcartcontainsitemsretail")
+            }
         } else {
             initializePeopleSDK("ff72a37f5301476f082cdbc60297da8a-be3d0a17-f2bf-460b-b2b8-48196cedec25")
             const localBasket = JSON.parse(localStorage.getItem("basket"))?.["_items"] || []
@@ -28,9 +33,12 @@ const Basket = observer(() => {
             fetchTypes().then(data => device.setTypes(data))
             fetchBrands().then(data => device.setBrands(data))
             fetchDevices(null, null, null, null).then(data => device.setDevices(data.rows))
+            if(basket.items.length !== 0){
+                window.pe.track("shoppingcartcontainsitemsretail")
+            }
         }
 
-    }, [])
+    }, [basket.items.length])
 
     const totalPrice = () => {
         return basket.items.reduce((total, item) => {
@@ -45,6 +53,7 @@ const Basket = observer(() => {
     const stripeCheckOut = async () => {
         try {
             const checkOutURL = await createCheckOutSession(user.user.id)
+            await window.pe.track("shoppingcartcheckoutstartedretail", {carturl: checkOutURL})
             window.location.href = checkOutURL
         } catch (e) {
             console.error(e);
