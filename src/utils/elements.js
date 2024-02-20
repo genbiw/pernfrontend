@@ -62,7 +62,7 @@ export const Garbage = () => {
 
 export const Plus = () => {
     return (
-        <svg fill="none" stroke="#000" viewBox="0 0 24 24" width="22" height="22"><path d="M6 12H18" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path><path d="M12 18V6" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+        <svg fill="none" stroke="#000" viewBox="0 0 24 24" width="22" height="22"><path d="M6 12H18" stroke="#000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"></path><path d="M12 18V6" stroke="#000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"></path></svg>
     )
 }
 

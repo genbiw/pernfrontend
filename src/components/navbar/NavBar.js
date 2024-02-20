@@ -10,53 +10,61 @@ import login from "../../assets/login.png"
 import basket from "../../assets/basket.png"
 import admin from "../../assets/admin.png"
 import { UserIcon } from "../../utils/elements"
-
+ 
 const NavBar = observer(() => {
 
     const { user } = useContext(Context)
     const navigate = useNavigate()
 
-    const logOut = async() => {
+    const navigateToAdminPanel = () => {
+        navigate(ADMIN_ROUTE)
+    }
+
+    const navigateToBasket = () => {
+        navigate(BASKET_ROUTE)
+    }
+
+    const navigateToAccount = () => {
+        navigate(ACCOUNT_ROUTE)
+    }
+
+    const navigateToLogin = () => {
+        navigate(LOGIN_ROUTE)
+    }
+
+    const logOut = async () => {
         user.setUser({})
         user.setIsAuth(false)
         localStorage.removeItem('token')
         await window.pe.forgetPerson()
-        navigate(LOGIN_ROUTE)
+        navigate(SHOP_ROUTE)
     }
 
     return (
 
         <div className='navbar container'>
-            
+
             <NavLink className="link logo" to={SHOP_ROUTE}>
                 <img width={50} height={50} src={logo} />
             </NavLink>
             {user.user.role === "ADMIN" &&
                 <div className="header__menu">
-                    <div className="icon header__user" onClick={() => navigate(ACCOUNT_ROUTE)}><UserIcon /></div>
-                    <div className="icon header__admin" onClick={() => navigate(ADMIN_ROUTE)}><img src={admin}></img></div>
-                    <div className="icon header__basket" onClick={() => {
-                        navigate(BASKET_ROUTE)
-                    }}><img src={basket}></img></div>
+                    <div className="icon header__user" onClick={navigateToAccount}><UserIcon /></div>
+                    <div className="icon header__admin" onClick={navigateToAdminPanel}><img src={admin}></img></div>
+                    <div className="icon header__basket" onClick={navigateToBasket}><img src={basket}></img></div>
                     <div className="icon header__logout" onClick={() => logOut()}><img src={logout}></img></div>
                 </div>}
 
             {user.user.role === "USER" &&
                 <div className="header__menu">
-                    <div className="icon header__user" onClick={() => navigate(ACCOUNT_ROUTE)}><UserIcon /></div>
-                    <div className="icon header__basket" onClick={() => {
-                        navigate(BASKET_ROUTE)
-                    }}><img src={basket}></img></div>
+                    <div className="icon header__user" onClick={navigateToAccount}><UserIcon /></div>
+                    <div className="icon header__basket" onClick={navigateToBasket}><img src={basket}></img></div>
                     <div className="icon header__logout" onClick={() => logOut()}><img src={logout}></img></div>
                 </div>}
             {user.isAuth === false &&
                 <div className="header__menu">
-                    <div className="icon header__basket" onClick={() => {
-                        navigate(BASKET_ROUTE)
-                    }}><img src={basket}></img></div>
-                    <div className="icon header__login" onClick={() => {
-                        navigate(LOGIN_ROUTE)
-                    }}><img src={login}></img></div>
+                    <div className="icon header__basket" onClick={navigateToBasket}><img src={basket}></img></div>
+                    <div className="icon header__login" onClick={navigateToLogin}><img src={login}></img></div>
                 </div>
             }
 

@@ -14,7 +14,6 @@ const Account = observer(() => {
     },[])
 
     const { user } = useContext(Context)
-    console.log(user.user) 
 
     const updateAccountUser = async (updatedData) => {
         user.setUser(updatedData);

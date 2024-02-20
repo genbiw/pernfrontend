@@ -17,10 +17,10 @@ root.render(
         device: new DeviceStore(),
         basket: new BasketStore()
       }}>
-      <React.StrictMode>
+      
         <App />
-      </React.StrictMode>
+      
     </Context.Provider>
   </BrowserRouter>
-
+ 
 );

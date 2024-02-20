@@ -12,15 +12,10 @@ export const authAdminRoutes = [
         path: ADMIN_ROUTE,
         Component: <Admin/>
     }
-]
+] 
 
 export const authRoutes = [ 
     
-    {
-        path: PAYMENT_SUCCESS,
-        Component: <PaymentSuccess/>
-    },
-
     {
         path: ACCOUNT_ROUTE,
         Component: <Account/>
@@ -48,5 +43,14 @@ export const publicRoutes = [
     {
         path: DEVICE_ROUTE + "/:id",
         Component: <Device/>
-    }
+    },
+    {
+        path: PAYMENT_SUCCESS,
+        Component: <PaymentSuccess/>
+    },
+    {
+        path: PAYMENT_CANCEL,
+        Component: <PaymentSuccess/>
+    },
+
 ]

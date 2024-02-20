@@ -14,8 +14,6 @@ const Basket = observer(() => {
     const [basketModified, setBasketModify] = useState(false)
     const [loading, setLoading] = useState(false)
 
-    console.log(basket.items.length)
-
     useEffect(() => {
         if (user.isAuth) {
             initializePeopleSDK("ff72a37f5301476f082cdbc60297da8a-be3d0a17-f2bf-460b-b2b8-48196cedec25")
