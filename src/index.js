@@ -17,10 +17,7 @@ root.render(
         device: new DeviceStore(),
         basket: new BasketStore()
       }}>
-      
         <App />
-      
     </Context.Provider>
   </BrowserRouter>
- 
 );

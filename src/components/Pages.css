@@ -13,3 +13,7 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+.pages__item--active {
+    text-decoration: underline;
+}

@@ -8,6 +8,8 @@ import { Context } from './index';
 import { check } from './http/userAPI';
 import PageLoading from './components/loading/PageLoading.js';
 import {initializePeopleSDK} from "./http/infobipPeople.js"
+import { WhatsApp } from './utils/elements.js';
+import { initializeLCSDK } from './http/infobipLivechat.js';
 
 const App = observer(() => {
   const { user } = useContext(Context)
@@ -15,6 +17,7 @@ const App = observer(() => {
 
   useEffect(() => {
     initializePeopleSDK("ff72a37f5301476f082cdbc60297da8a-be3d0a17-f2bf-460b-b2b8-48196cedec25")
+    initializeLCSDK()
     setTimeout(() => {
         check().then(data => {
           user.setUser(data)
@@ -40,9 +43,10 @@ const App = observer(() => {
     <div className="App">
       <NavBar />
       <AppRouter />
+      <a target="_blank" rel="noopener noreferrer" href='https://api.whatsapp.com/send?phone=447491163403'><WhatsApp/></a>
       <Footer />
     </div>
   );
 })
 
-export default App  
+export default App 

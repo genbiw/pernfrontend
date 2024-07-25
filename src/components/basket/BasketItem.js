@@ -16,7 +16,7 @@ const BasketItem = observer(({ itemId, quantity, setBasketModify }) => {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState(null);
 
-    const foundDevice = device.devices.find(data => data.id == itemId);
+    const foundDevice = device.devices.find(data => data.id === itemId);
     const price = foundDevice ? foundDevice.price : null;
     const img = foundDevice ? foundDevice.img : null;
     const name = foundDevice ? foundDevice.name : null;
@@ -57,7 +57,7 @@ const BasketItem = observer(({ itemId, quantity, setBasketModify }) => {
             {loading && <SectionLoading />}
             <div className='basket-item__content'>
                 <div className='basket-item__content-description'>
-                    <img className="basket-item__img" src={process.env.REACT_APP_API_URL + img} onClick={() => navigate(DEVICE_ROUTE + "/" + itemId)} />
+                    <img alt='basket-item-img' className="basket-item__img" src={process.env.REACT_APP_API_URL + img} onClick={() => navigate(DEVICE_ROUTE + "/" + itemId)} />
                     <div className='content__description'>
                         <div className="basket-item__item item__name">{name}</div>
                         <div className="basket-item__item item__price">{price} Euro</div>
@@ -77,7 +77,7 @@ const BasketItem = observer(({ itemId, quantity, setBasketModify }) => {
             <div className='basket-item__characteristics'>
                 {quantity === 1
                     ? <div className='garbage' src={Minus} onClick={deleteDeviceFromBasket}><Garbage /></div>
-                    : <div className='minus'><img src={Minus} onClick={reduceQuantity} /></div>
+                    : <div className='minus'><img alt='minus-img' src={Minus} onClick={reduceQuantity} /></div>
                 }
 
 

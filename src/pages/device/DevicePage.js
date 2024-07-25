@@ -70,7 +70,7 @@ const DevicePage = () => {
                                 <div className='raiting__star' ><Star /></div>
                             </div>
                         </div>
-                        <img className="device-page__img" src={process.env.REACT_APP_API_URL + device.img} />
+                        <img alt='device-page-img' className="device-page__img" src={process.env.REACT_APP_API_URL + device.img} />
                     </div>
                     <div className='device-page__description'>
                         <div className='description__title'>Description</div>

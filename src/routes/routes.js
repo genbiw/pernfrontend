@@ -1,4 +1,4 @@
-import Admin from "../pages/admin/Admin" 
+import Admin from "../pages/admin/Admin"
 import Basket from "../pages/basket/Basket"
 import Shop from "../pages/shop/Shop"
 import Auth from "../pages/auth/Auth"

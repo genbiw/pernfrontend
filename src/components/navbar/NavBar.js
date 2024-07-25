@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Context } from '../../index';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { ADMIN_ROUTE, LOGIN_ROUTE, SHOP_ROUTE, BASKET_ROUTE, ACCOUNT_ROUTE } from '../../utils/const';
@@ -10,7 +10,7 @@ import login from "../../assets/login.png"
 import basket from "../../assets/basket.png"
 import admin from "../../assets/admin.png"
 import { UserIcon } from "../../utils/elements"
- 
+
 const NavBar = observer(() => {
 
     const { user } = useContext(Context)
@@ -45,26 +45,26 @@ const NavBar = observer(() => {
         <div className='navbar container'>
 
             <NavLink className="link logo" to={SHOP_ROUTE}>
-                <img width={50} height={50} src={logo} />
+                <img alt='logo-img' width={50} height={50} src={logo} />
             </NavLink>
             {user.user.role === "ADMIN" &&
                 <div className="header__menu">
                     <div className="icon header__user" onClick={navigateToAccount}><UserIcon /></div>
-                    <div className="icon header__admin" onClick={navigateToAdminPanel}><img src={admin}></img></div>
-                    <div className="icon header__basket" onClick={navigateToBasket}><img src={basket}></img></div>
-                    <div className="icon header__logout" onClick={() => logOut()}><img src={logout}></img></div>
+                    <div className="icon header__admin" onClick={navigateToAdminPanel}><img alt='admin-img' src={admin}></img></div>
+                    <div className="icon header__basket" onClick={navigateToBasket}><img alt='basket-img' src={basket}></img></div>
+                    <div className="icon header__logout" onClick={() => logOut()}><img alt='logo-img' src={logout}></img></div>
                 </div>}
 
             {user.user.role === "USER" &&
                 <div className="header__menu">
                     <div className="icon header__user" onClick={navigateToAccount}><UserIcon /></div>
-                    <div className="icon header__basket" onClick={navigateToBasket}><img src={basket}></img></div>
-                    <div className="icon header__logout" onClick={() => logOut()}><img src={logout}></img></div>
+                    <div className="icon header__basket" onClick={navigateToBasket}><img alt='basket-img' src={basket}></img></div>
+                    <div className="icon header__logout" onClick={() => logOut()}><img alt='logo-img'  src={logout}></img></div>
                 </div>}
             {user.isAuth === false &&
                 <div className="header__menu">
-                    <div className="icon header__basket" onClick={navigateToBasket}><img src={basket}></img></div>
-                    <div className="icon header__login" onClick={navigateToLogin}><img src={login}></img></div>
+                    <div className="icon header__basket" onClick={navigateToBasket}><img alt='basket-img' src={basket}></img></div>
+                    <div className="icon header__login" onClick={navigateToLogin}><img alt='login-img' src={login}></img></div>
                 </div>
             }
 

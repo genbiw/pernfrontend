@@ -15,7 +15,7 @@ const Pages = observer(() => {
     return (
         <div className='pages'>
             {pages.map(page => 
-                <div className='pages__item' key={page} active={device.page === page} onClick={() => device.setPage(page)}>{page}</div> 
+                <div className={`pages__item ${device.page === page ? "pages__item--active" : ""}`}  key={page} onClick={() => device.setPage(page)}>{page}</div> 
                 )}
         </div>
     );

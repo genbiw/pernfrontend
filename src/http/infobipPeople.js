@@ -52,4 +52,4 @@ export async function createPerson (contactInfo) {
 
     const { data } = await $authHostInfobip.post("people/2/persons", requestData);
     return data;
-}
+} 

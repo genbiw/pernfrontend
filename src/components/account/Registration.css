@@ -1,0 +1,9 @@
+.optIn {
+    display: flex;
+    justify-content: start;
+    margin: 10px;
+}
+
+.optInCheckBox {
+    margin-right: 5px;
+}

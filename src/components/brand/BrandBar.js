@@ -17,4 +17,4 @@ const BrandBar = observer(() => {
     );
 });
 
-export default BrandBar; 
+export default BrandBar;  

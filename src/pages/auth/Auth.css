@@ -31,9 +31,30 @@
     border-radius: 5px;
 }
 
-.auth-button {
-    width: 150px;
-    padding: 5px;
-    margin: 0 5px;
+.auth-page_button-section {
+    display: flex;
+    align-items: center;
+}
+
+.button-section_button {
+    padding: 10px 20px;
+    margin: 0 15px 0 20px;
+    border: 1px solid lightgrey;
     border-radius: 5px;
+    background-color: #fff;
+    color: #000;
+}
+
+.button-section_button:hover {
+    cursor: pointer;
+    background-color: #000;
+    color: #fff;
+}
+
+.button-section_description {
+    display: flex;
+}
+
+.button-section_description-link {
+    margin-left: 5px;
 }

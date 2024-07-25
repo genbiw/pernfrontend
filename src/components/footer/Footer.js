@@ -25,12 +25,12 @@ const Footer = () => {
             <div className="social-block">
                 <div className="social-block__title">Social Networks</div>
                 <div className="social-block__links">
-                    <div className="social-block__link"><img src={tgIcon}/></div>
-                    <div className="social-block__link"><img src={waIcon}/></div>
-                    <div className="social-block__link"><img src={instaIcon}/></div>
-                    <div className="social-block__link"><img src={ytIcon}/></div>
-                    <div className="social-block__link"><img src={fbIcon}/></div>
-                    <div className="social-block__link"><img src={vkIcon}/></div>
+                    <div className="social-block__link"><img alt="telegram-icon-img" src={tgIcon}/></div>
+                    <div className="social-block__link"><img alt="whatsapp-icon-img" src={waIcon}/></div>
+                    <div className="social-block__link"><img alt="insta-icon-img" src={instaIcon}/></div>
+                    <div className="social-block__link"><img alt="youtube-icon-img" src={ytIcon}/></div>
+                    <div className="social-block__link"><img alt="facebook-icon-img" src={fbIcon}/></div>
+                    <div className="social-block__link"><img alt="vkontakte-icon-img" src={vkIcon}/></div>
                 </div>
             </div>
         </div>
