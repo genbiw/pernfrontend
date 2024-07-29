@@ -88,66 +88,8 @@ const Account = observer(() => {
                     <div className="property-item__sign"><UserIcon /></div>
                     <div>Person</div>
                 </div>
-                {/* <div className="account-menu__property">
-                    <div className="property-item__sign"><Order /></div>
-                    <div>My orders</div>
-                </div>
-                <div className="account-menu__property">
-                    <div className="property-item__sign"><Favorite /></div>
-                    <div>Favorites</div>
-                </div>
-                <div className="account-menu__property">
-                    <div className="property-item__sign"><Review /></div>
-                    <div>My reviews</div>
-                </div> */}
             </div>
             <div className="account-properties">
-
-                {/* <div className="account-property">
-                    <div className="section-name">
-                        <div className="property-name">
-                            <div className="property-item__sign"><Phone /></div>
-                            <div>Phone numbers</div>
-                        </div>
-                        <div>+ ADD NEW</div>
-                    </div>
-                    {sectionPropertyPhone.map((item, index) => {
-                        return (
-                            <SectionProperty key={index} propertyName={item.propertyName} type={item.type} id={item.id} name={item.name} placeholder={item.placeholder} autoComplete={item.name}
-                                updateAccountUser={updateAccountUser} />
-                        )
-                    })}
-                </div> */}
-
-                {/* <div className="account-property">
-                    <div className="section-name">
-                        <div className="property-name">
-                            <div className="property-item__sign"><Email /></div>
-                            <div>Emails</div>
-                        </div>
-                        <div>+ ADD NEW</div>
-                    </div>
-                    {sectionPropertyEmail.map((item, index) => {
-                        return (
-                            <SectionProperty key={index} propertyName={item.propertyName} propertyValue={item.propertyValue} type={item.type} id={item.id} name={item.name} placeholder={item.placeholder} autoComplete={item.name} updateAccountUser={updateAccountUser} />
-                        )
-                    })}
-                </div> */}
-
-                {/* <div className="account-property">
-                    <div className="section-name">
-                        <div className="property-name">
-                            <div className="property-item__sign"><Password /></div>
-                            <div>Password</div>
-                        </div>
-                        <div>+ ADD NEW</div>
-                    </div>
-                    {sectionPropertyPassword.map((item, index) => {
-                        return (
-                            <SectionProperty key={index} propertyName={item.propertyName} type={item.type} id={item.id} name={item.name} placeholder={item.placeholder} autoComplete={item.name} updateAccountUser={updateAccountUser} />
-                        )
-                    })}
-                </div> */}
 
                 <div className="account-property">
                     <div className="section-name">
@@ -157,13 +99,7 @@ const Account = observer(() => {
                         </div>
                         {/* <div>+ ADD NEW</div> */}
                     </div>
-                    {/* <div className="section-property">
-                        <div>Gender</div>
-                        <div className="input-underscore__block">
-                            <GenderDropdown />
-                            <div className="property-item__sign"><Pencil /></div>
-                        </div>
-                    </div> */}
+                    
                     {userAttributeFinal.map((item, index) => {
                         return (
                             <SectionProperty key={index} propertyName={item.propertyName} propertyValue={item.propertyValue} type={item.type} id={item.id} name={item.name} placeholder={item.placeholder} autoComplete={item.name} updateAccountUser={updateAccountUser} />

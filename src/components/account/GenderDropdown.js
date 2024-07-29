@@ -2,7 +2,7 @@ import "./GenderDropdown.css"
 import { useContext, useState } from "react"; 
 import { Context } from "../..";
  
-const GenderDropdown = () => {
+const GenderDropdown = ({gender, setGender}) => { 
 
     const { user } = useContext(Context)
 
@@ -12,15 +12,16 @@ const GenderDropdown = () => {
         setIsOpen(!isOpen);
     };
 
-    const handleSelect = (gender) => {
-        user.setSelectedGender(gender);
+    const handleSelect = (selectedGender) => {
+        user.setSelectedGender(selectedGender); // Update user context
+        setGender(selectedGender); // Update local state in Registration component
         setIsOpen(false);
     };
 
     return ( 
         <div className="genders-dropdown">
             <div className="selected-gender" onClick={handleToggle}>
-                {user.selectedGender || 'Choose Gender'}
+                {gender || 'Choose Gender'}
             </div>
             {isOpen && (
                 <div className="gender-dropdown-content">

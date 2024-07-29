@@ -31,4 +31,4 @@ export {
     $host,
     $authHost,
     $authHostInfobip
-}
+} 

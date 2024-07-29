@@ -12,6 +12,7 @@
     flex-direction: column;
     background-color: #fff;
     border-radius: 10px;
+    border: 1px solid lightgray;
 }
 
 .auth-page__title {
@@ -22,6 +23,8 @@
     margin: 10px;
     display: flex;
     flex-direction: column;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
 .form__input {

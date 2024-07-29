@@ -21,13 +21,18 @@ const Auth = observer(() => {
     const navigate = useNavigate()
     const isLogin = location.pathname === LOGIN_ROUTE
 
-    const [name, setName] = useState("")
+    const [userName, setUserName] = useState("")
     const [country, setCountry] = useState("")
+    const [address, setAddress] = useState("")
     const [email, setEmail] = useState("")
+    const [phoneNumber, setPhoneNumber] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
     const [phone, setPhone] = useState("")
     const [optIn, setOptIn] = useState("")
+    const [age, setAge] = useState("")
+    const [city, setCity] = useState("")
+    const [gender, setGender] = useState("")
 
     const click = async () => {
         try {
@@ -37,8 +42,8 @@ const Auth = observer(() => {
                 data = await login(email, password)
                 await window.pe.setPerson({ email: email })
             } else {
-                data = await registration(email, password)
-                createPersonData = await createPerson(email)
+                data = await registration(email, phoneNumber, password, userName, age, gender, city, address, country)
+                createPersonData = await createPerson(email, phoneNumber)
                 await window.pe.setPerson({ email: email })
                 await window.pe.track("registrationretail")
             }
@@ -63,12 +68,16 @@ const Auth = observer(() => {
                         setPassword={setPassword}
                     /> :
                     <Registration
-                        name={name}
-                        setName={setName}
+                        userName={userName}
+                        setUserName={setUserName}
                         country={country}
                         setCountry={setCountry}
+                        address={address}
+                        setAddress={setAddress}
                         email={email}
                         setEmail={setEmail}
+                        phoneNumber={phoneNumber}
+                        setPhoneNumber={setPhoneNumber}
                         password={password}
                         setPassword={setPassword}
                         confirmPassword={confirmPassword}
@@ -77,6 +86,12 @@ const Auth = observer(() => {
                         setPhone={setPhone}
                         optIn={optIn}
                         setOptIn={setOptIn}
+                        age={age}
+                        setAge={setAge}
+                        city={city}
+                        setCity={setCity}
+                        gender={gender}
+                        setGender={setGender}
                     />
                 }
 

@@ -38,14 +38,20 @@ export function initializePeopleSDK(apiKey) {
     window.pe.init(apiKey);
 }
 
-export async function createPerson (contactInfo) {
+export async function createPerson (email, phoneNumber) {
     const requestData = {
         contactInformation: {
             email: [
                 {
-                    address: contactInfo
+                    address: email
+                }
+            ],
+            phone: [
+                {
+                    number: phoneNumber
                 }
             ]
+
         }
         // Add other properties as needed
     };
