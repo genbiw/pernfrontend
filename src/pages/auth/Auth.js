@@ -94,11 +94,7 @@ const Auth = observer(() => {
                         setGender={setGender}
                     />
                 }
-
-                {/* <form className='auth-page__form'>
-                    <input className='form__input' placeholder='Enter email' value={email} onChange={e => setEmail(e.target.value)} />
-                    <input className='form__input' placeholder='Enter password' value={password} onChange={e => setPassword(e.target.value)} type='password' />
-                </form> */}
+                
                 {
                     isLogin ?
                         <div className='auth-page_button-section'>

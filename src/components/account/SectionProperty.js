@@ -3,6 +3,7 @@ import { Pencil, RejectSign, AcceptSign } from "../../utils/elements"
 import "./SectionProperty.css"
 import { updateUserAttribute } from "../../http/userAPI"
 import { Context } from "../.." 
+import GenderDropdown from "./GenderDropdown"
 
 const SectionProperty = ({ propertyName, propertyValue, type, id, name, placeholder, autoComplete, updateAccountUser}) => {
 
@@ -32,27 +33,46 @@ const SectionProperty = ({ propertyName, propertyValue, type, id, name, placehol
         <div className="section-property" key={id}>
             <div>{propertyName}</div>
             <div className="input-underscore__block">
-                {clicked &&
-                    (
-                        <>
-                            <input className="input-underscore" type={type} id={id} name={name} placeholder={placeholder} value={value} onChange={e => setValue(e.target.value)} autoComplete={autoComplete} />
-                            <div className="property-item__sign property-item__sign-reject" onClick={handleClick}><RejectSign /></div>
-                            <div className="property-item__sign property-item__sign-accept" onClick={updateAttribute}><AcceptSign /></div>
-                        </>
-                    )
-
-                }
-                {propertyValue &&
-                    <div className={`account_property-value ${clicked ? 'hide' : "show"}`}>{propertyValue}</div>
-                }
-                {!propertyValue &&
-                    <div className={`account_property-value ${clicked ? 'hide' : "show"}`}>{placeholder}</div>
-                }
-                <div className={`property-item__sign property-item__sign-pencil ${clicked ? 'hide' : "show"}`} onClick={handleClick}><Pencil /></div>
-
+                {propertyName === "Gender" ? (
+                    <GenderDropdown gender={propertyValue} setGender={setValue}/>
+                ) : clicked ? (
+                    <>
+                        <input
+                            className="input-underscore"
+                            type={type}
+                            id={id}
+                            name={name}
+                            placeholder={placeholder}
+                            value={value}
+                            onChange={e => setValue(e.target.value)}
+                            autoComplete={autoComplete}
+                        />
+                        <div className="property-item__sign property-item__sign-reject" onClick={handleClick}>
+                            <RejectSign />
+                        </div>
+                        <div className="property-item__sign property-item__sign-accept" onClick={updateAttribute}>
+                            <AcceptSign />
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        {propertyValue ? (
+                            <div className={`account_property-value ${clicked ? 'hide' : 'show'}`}>
+                                {propertyValue}
+                            </div>
+                        ) : (
+                            <div className={`account_property-value ${clicked ? 'hide' : 'show'}`}>
+                                {placeholder}
+                            </div>
+                        )}
+                        <div className="property-item__sign property-item__sign-pencil show" onClick={handleClick}>
+                            <Pencil />
+                        </div>
+                    </>
+                )}
             </div>
         </div>
-    )
+    );
 }
 
 export default SectionProperty

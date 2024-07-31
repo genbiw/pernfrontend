@@ -1,25 +1,42 @@
 import "./Account.css"
-import { UserIcon, Order, Favorite, Review, Phone, Pencil, Email, Password } from "../../utils/elements"
+import { UserIcon, Order, Favorite, Review, Phone, Email, Password } from "../../utils/elements"
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../..";
-import GenderDropdown from "../../components/account/GenderDropdown"
 import SectionProperty from "../../components/account/SectionProperty"
-import { observer } from 'mobx-react-lite'; 
-import { initializePeopleSDK } from "../../http/infobipPeople";
-
+import { observer } from 'mobx-react-lite';
+ 
 const Account = observer(() => {
 
-    useEffect(()=>{
-        initializePeopleSDK("ff72a37f5301476f082cdbc60297da8a-be3d0a17-f2bf-460b-b2b8-48196cedec25")
-    },[])
-
     const { user } = useContext(Context)
+
+    const {
+        id,
+        password,
+        createdAt,
+        updatedAt,
+        role,
+        iat,
+        exp,
+        email,
+        phoneNumber,
+        ...rest
+    } = user.user;
+
+    const contactInformation = { email, phoneNumber };
+    const userAttribute = rest;
 
     const updateAccountUser = async (updatedData) => {
         user.setUser(updatedData);
     };
 
-    const { id, password, createdAt, updatedAt, email, role, iat, exp, ...userAttribute } = user.user
+    const contactInformationFinal = Object.keys(contactInformation).map(attr => ({
+        id: attr,
+        name: attr,
+        propertyName: attr.charAt(0).toUpperCase() + attr.slice(1),
+        propertyValue: contactInformation[attr],
+        type: typeof contactInformation[attr] === 'number' ? 'number' : 'text',
+        placeholder: `e.g. ${contactInformation[attr]}`
+    }));
 
     const userAttributeFinal = Object.keys(userAttribute).map(attr => ({
         id: attr,
@@ -29,57 +46,6 @@ const Account = observer(() => {
         type: typeof userAttribute[attr] === 'number' ? 'number' : 'text',
         placeholder: `e.g. ${userAttribute[attr]}`
     }));
-
-    const sectionPropertyPhone = [
-        {
-            id: "phone",
-            name: "phone",
-            propertyName: "Phone number",
-            propertyValue: "",
-            type: "text",
-            placeholder: "e.g. 122333444455"
-        }
-    ]
-
-    const sectionPropertyEmail = [
-        {
-            id: "email",
-            name: "email",
-            propertyName: "Email",
-            propertyValue: user.user.email,
-            type: "text",
-            placeholder: "e.g. example@gmail.com"
-        }
-    ]
-
-
-    const sectionPropertyPassword = [
-        {
-            id: "oldpassword",
-            name: "oldpassword",
-            propertyName: "Old password",
-            propertyValue: "",
-            type: "password",
-            placeholder: "e.g. 122333444455"
-        },
-        {
-            id: "newpassword",
-            name: "newpassword",
-            propertyName: "New password",
-            propertyValue: "",
-            type: "password",
-            placeholder: "e.g. 122333444455"
-        },
-        {
-            id: "confirmpassword",
-            name: "confirmpassword",
-            propertyName: "Confirm password",
-            propertyValue: "",
-            type: "password",
-            placeholder: "e.g. 122333444455"
-        }
-    ]
-
 
     return (
         <div className="container account">
@@ -94,12 +60,26 @@ const Account = observer(() => {
                 <div className="account-property">
                     <div className="section-name">
                         <div className="property-name">
+                            <div className="property-item__sign"><Phone /></div>
+                            <div>Contact information</div>
+                        </div>
+                    </div>
+
+                    {contactInformationFinal.map((item, index) => {
+                        return (
+                            <SectionProperty key={index} propertyName={item.propertyName} propertyValue={item.propertyValue} type={item.type} id={item.id} name={item.name} placeholder={item.placeholder} autoComplete={item.name} updateAccountUser={updateAccountUser} />
+                        )
+                    })}
+                </div>
+
+                <div className="account-property">
+                    <div className="section-name">
+                        <div className="property-name">
                             <div className="property-item__sign"><UserIcon /></div>
                             <div>Main information</div>
                         </div>
-                        {/* <div>+ ADD NEW</div> */}
                     </div>
-                    
+
                     {userAttributeFinal.map((item, index) => {
                         return (
                             <SectionProperty key={index} propertyName={item.propertyName} propertyValue={item.propertyValue} type={item.type} id={item.id} name={item.name} placeholder={item.placeholder} autoComplete={item.name} updateAccountUser={updateAccountUser} />

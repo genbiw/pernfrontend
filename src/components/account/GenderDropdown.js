@@ -1,7 +1,7 @@
 import "./GenderDropdown.css"
 import { useContext, useState } from "react"; 
 import { Context } from "../..";
- 
+  
 const GenderDropdown = ({gender, setGender}) => { 
 
     const { user } = useContext(Context)
