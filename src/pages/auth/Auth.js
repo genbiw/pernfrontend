@@ -9,7 +9,7 @@ import { Registration, Authorisation } from '../../components/account/Registrati
 import "./Auth.css"
 
 import { initializePeopleSDK, createPerson } from "../../http/infobipPeople"
- 
+
 const Auth = observer(() => {
 
     useEffect(() => {
@@ -36,25 +36,74 @@ const Auth = observer(() => {
 
     const click = async () => {
         try {
-            let data
-            let createPersonData
-            if (isLogin) {
-                data = await login(email, password)
-                await window.pe.setPerson({ email: email })
-            } else {
-                data = await registration(email, phoneNumber, password, userName, age, gender, city, address, country)
-                createPersonData = await createPerson(email, phoneNumber)
-                await window.pe.setPerson({ email: email })
-                await window.pe.track("registrationretail")
-            }
-            user.setUser(data)
-            user.setIsAuth(true)
-            navigate(SHOP_ROUTE)
-        } catch (e) {
-            alert(e)
-        }
+            let data;
+            let createPersonData;
 
-    }
+            if (isLogin) {
+                if (!email) {
+                    window.alert("Enter email");
+                    return;
+                }
+                if (!password) {
+                    window.alert("Enter password");
+                    return;
+                }
+
+                data = await login(email, password);
+                await window.pe.setPerson({ email: email });
+            } else {
+                // Registration validation
+                switch (true) {
+                    case !userName:
+                        window.alert("Enter username");
+                        return;
+                    case !gender:
+                        window.alert("Select gender");
+                        return;
+                    case !age:
+                        window.alert("Enter age");
+                        return;
+                    case !country:
+                        window.alert("Enter country");
+                        return;
+                    case !city:
+                        window.alert("Enter city");
+                        return;
+                    case !address:
+                        window.alert("Enter address");
+                        return;
+                    case !email:
+                        window.alert("Enter email");
+                        return;
+                    case !password:
+                        window.alert("Enter password");
+                        return;
+                    case !confirmPassword:
+                        window.alert("Enter confirm password");
+                        return;
+                    case password !== confirmPassword:
+                        window.alert("Passwords and confirm password do not match");
+                        return;
+                    case !phoneNumber:
+                        window.alert("Enter phone number");
+                        return;
+                    default:
+                        // All required fields are present, proceed with registration
+                        data = await registration(email, phoneNumber, password, userName, age, gender, city, address, country);
+                        createPersonData = await createPerson(email, phoneNumber, userName, gender, country, city, address, age);
+                        await window.pe.track("registrationretail");
+                        break;
+                }
+            }
+
+            user.setUser(data);
+            user.setIsAuth(true);
+            navigate(SHOP_ROUTE);
+        } catch (e) {
+            alert(e);
+        }
+    };
+
 
     return (
         <div className='auth-page'>

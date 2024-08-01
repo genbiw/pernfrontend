@@ -32,23 +32,31 @@ import { $authHostInfobip } from "./index";
     s.parentNode.insertBefore(r, s);
 })
 
-(window, document, 'https://s3.eu-central-1.amazonaws.com/portal-cdn-production/people-events-sdk/pe.latest-2.js', 'pe');
+    (window, document, 'https://s3.eu-central-1.amazonaws.com/portal-cdn-production/people-events-sdk/pe.latest-2.js', 'pe');
 
 export function initializePeopleSDK(apiKey) {
     window.pe.init(apiKey);
 }
 
-export async function createPerson (email, phoneNumber) {
+export async function createPerson(email, phoneNumber, userName, gender, country, city, address, age) {
     const requestData = {
-        contactInformation: {
-            email: [
+        "firstName": userName,
+        "gender": gender.toUpperCase(),
+        "country": country,
+        "city": city,
+        "address": address,
+        "customAttributes": {
+            "age": age
+        },
+        "contactInformation": {
+            "email": [
                 {
-                    address: email
+                    "address": email
                 }
             ],
-            phone: [
+            "phone": [
                 {
-                    number: phoneNumber
+                    "number": phoneNumber
                 }
             ]
 

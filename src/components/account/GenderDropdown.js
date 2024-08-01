@@ -15,7 +15,9 @@ const GenderDropdown = ({gender, setGender, name, updateAttribute}) => {
     const handleSelect = (selectedGender) => {
         user.setSelectedGender(selectedGender); // Update user context
         setGender(selectedGender); // Update local state in Registration component
-        updateAttribute(name, selectedGender)
+        if (name){
+            updateAttribute(name, selectedGender)
+        }
         setIsOpen(false);
     };
 

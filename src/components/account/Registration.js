@@ -10,14 +10,14 @@ export const Registration = ({userName, setUserName, age, setAge, country, setCo
                 gender = {gender}
                 setGender = {setGender}
             />
-            <input className='form__input' placeholder='Enter your age' value={age} onChange={e => setAge(e.target.value)} />
-            <input className='form__input' placeholder='Enter your country' value={country} onChange={e => setCountry(e.target.value)} />
-            <input className='form__input' placeholder='Enter your city' value={city} onChange={e => setCity(e.target.value)} />
-            <input className='form__input' placeholder='Enter your address' value={address} onChange={e => setAddress(e.target.value)} />
-            <input className='form__input' placeholder='Enter email' value={email} onChange={e => setEmail(e.target.value)} />
+            <input className='form__input' placeholder='Enter your age' value={age} onChange={e => setAge(e.target.value)} required/>
+            <input className='form__input' placeholder='Enter your country' value={country} onChange={e => setCountry(e.target.value)} required/>
+            <input className='form__input' placeholder='Enter your city' value={city} onChange={e => setCity(e.target.value)} required/>
+            <input className='form__input' placeholder='Enter your address' value={address} onChange={e => setAddress(e.target.value)} required/>
+            <input className='form__input' placeholder='Enter email' value={email} onChange={e => setEmail(e.target.value)} required/>
             <input className='form__input' placeholder='Enter password' value={password} onChange={e => setPassword(e.target.value)} type='password' />
-            <input className='form__input' placeholder='Confirm password' value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} type='password' />
-            <input className='form__input' placeholder='Enter phone Number' value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} />
+            <input className='form__input' placeholder='Confirm password' value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} type='password' required/>
+            <input className='form__input' placeholder='Enter phone Number' value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} required/>
             <div className="optIn"> 
                 <input className="optInCheckBox" type="checkbox" name="checkbox" value={optIn} onChange={e => setOptIn(e.target.value)} id="optInWA" />
                 <div>I would like to receive notifications via Messages</div>
@@ -30,8 +30,8 @@ export const Authorisation = ({email, setEmail, password, setPassword}) => {
 
     return (
         <form className='auth-page__form'>
-            <input className='form__input' placeholder='Enter email' value={email} onChange={e => setEmail(e.target.value)} />
-            <input className='form__input' placeholder='Enter password' value={password} onChange={e => setPassword(e.target.value)} type='password' />
+            <input className='form__input' placeholder='Enter email' value={email} onChange={e => setEmail(e.target.value)} required/>
+            <input className='form__input' placeholder='Enter password' value={password} onChange={e => setPassword(e.target.value)} type='password' required/>
         </form>
     )
 }
