@@ -6,6 +6,24 @@
     display: none;
 }
 
+.input-underscore__block {
+    width: 250px;
+    display: flex;
+    border-bottom: 1px solid black;
+    position: relative;
+}
+
+.input-underscore {
+    border: none;
+    width: auto;
+    font-size: 10px;
+}
+
+.section-name {
+    display: flex;
+    justify-content: space-between;
+}
+
 
 .property-item__sign {
     margin: 0 4px;
@@ -20,6 +38,11 @@
     width: 16px;
     height: 16px;
     fill: #000000;
+}
+
+.section-property {
+    margin-bottom: 15px;
+    font-size: 15px;
 }
 
 .section-property input {

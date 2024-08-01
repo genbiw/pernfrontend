@@ -2,7 +2,7 @@ import "./GenderDropdown.css"
 import { useContext, useState } from "react"; 
 import { Context } from "../..";
   
-const GenderDropdown = ({gender, setGender}) => { 
+const GenderDropdown = ({gender, setGender, name, updateAttribute}) => { 
 
     const { user } = useContext(Context)
 
@@ -15,6 +15,7 @@ const GenderDropdown = ({gender, setGender}) => {
     const handleSelect = (selectedGender) => {
         user.setSelectedGender(selectedGender); // Update user context
         setGender(selectedGender); // Update local state in Registration component
+        updateAttribute(name, selectedGender)
         setIsOpen(false);
     };
 

@@ -14,6 +14,8 @@ import { UserIcon } from "../../utils/elements"
 const NavBar = observer(() => {
 
     const { user } = useContext(Context)
+
+    
     const navigate = useNavigate()
 
     const navigateToAdminPanel = () => {

@@ -2,39 +2,39 @@ import { useContext, useState } from "react"
 import { Pencil, RejectSign, AcceptSign } from "../../utils/elements"
 import "./SectionProperty.css"
 import { updateUserAttribute } from "../../http/userAPI"
-import { Context } from "../.." 
+import { Context } from "../.."
 import GenderDropdown from "./GenderDropdown"
 
-const SectionProperty = ({ propertyName, propertyValue, type, id, name, placeholder, autoComplete, updateAccountUser}) => {
+const SectionProperty = ({ propertyName, propertyValue, type, id, name, placeholder, autoComplete, updateAccountUser }) => {
 
-    const {user} = useContext(Context)
+    const { user } = useContext(Context)
 
     const [value, setValue] = useState("")
     const [clicked, isClicked] = useState(false)
 
     const handleClick = () => {
-        isClicked(!clicked) 
-        
+        isClicked(!clicked)
+
     }
 
-    const updateAttribute = () => {
-        try{
-
-        }catch(e){
+    const updateAttribute = (name, value) => {
+        try {
+            updateUserAttribute(user.user.email, name, value).then(data => updateAccountUser(data))
+            isClicked(!clicked)
+        } catch (e) {
             alert(e)
         }
-        updateUserAttribute(user.user.email, name, value).then(data => updateAccountUser(data))
-        isClicked(!clicked)
+
     }
 
- 
+
 
     return (
-        <div className="section-property" key={id}>
+        <div className="section-property" key={id}> 
             <div>{propertyName}</div>
             <div className="input-underscore__block">
                 {propertyName === "Gender" ? (
-                    <GenderDropdown gender={propertyValue} setGender={setValue}/>
+                    <GenderDropdown gender={propertyValue} setGender={setValue} updateAttribute={updateAttribute} name={name} />
                 ) : clicked ? (
                     <>
                         <input
@@ -50,7 +50,7 @@ const SectionProperty = ({ propertyName, propertyValue, type, id, name, placehol
                         <div className="property-item__sign property-item__sign-reject" onClick={handleClick}>
                             <RejectSign />
                         </div>
-                        <div className="property-item__sign property-item__sign-accept" onClick={updateAttribute}>
+                        <div className="property-item__sign property-item__sign-accept" onClick={updateAttribute(name, value)}>
                             <AcceptSign />
                         </div>
                     </>

@@ -1,11 +1,12 @@
 .genders-dropdown {
-    width: max-content;
+    width: 70px;
     padding: 5px;
     margin: 10px 0;
     border: 1px solid lightgray;
     border-radius: 5px;
     color: #75778B;
     display: flex;
+    text-align: center;
     flex-direction: column;
     position: relative;
 } 

@@ -6,7 +6,7 @@ import "./DeviceItem.css"
  
 const DeviceItem = ({ device }) => {
     const navigate = useNavigate()
-    console.log(device)
+   
     return (
         <div md={3} className='device-list__item' onClick={() => navigate(DEVICE_ROUTE + "/" + device.id)}>
             <div className='device-item'>

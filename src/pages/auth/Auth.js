@@ -9,7 +9,7 @@ import { Registration, Authorisation } from '../../components/account/Registrati
 import "./Auth.css"
 
 import { initializePeopleSDK, createPerson } from "../../http/infobipPeople"
-
+ 
 const Auth = observer(() => {
 
     useEffect(() => {
@@ -94,7 +94,7 @@ const Auth = observer(() => {
                         setGender={setGender}
                     />
                 }
-                
+
                 {
                     isLogin ?
                         <div className='auth-page_button-section'>

@@ -1,6 +1,6 @@
 import GenderDropdown from "./GenderDropdown"
 import "./Registration.css"
- 
+
 export const Registration = ({userName, setUserName, age, setAge, country, setCountry, city, setCity, address, setAddress, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword, phoneNumber, setPhoneNumber, optIn, setOptIn, gender, setGender}) => {
 
     return (

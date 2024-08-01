@@ -32,29 +32,8 @@
     background-color: #fff;
 }
 
-.section-name {
-    display: flex;
-    justify-content: space-between;
-}
+
 
 .property-name {
     display: flex;
-}
-
-.input-underscore__block {
-    width: 250px;
-    display: flex;
-    border-bottom: 1px solid black;
-    position: relative;
-}
-
-.input-underscore {
-    border: none;
-    width: auto;
-    font-size: 10px;
-}
-
-.section-property {
-    margin-bottom: 15px;
-    font-size: 15px;
 }

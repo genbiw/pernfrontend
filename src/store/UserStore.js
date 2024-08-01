@@ -13,7 +13,7 @@ export default class UserStore{
     }
 
     setUser(user){
-        this._user = user
+        this._user = user 
     }
 
     setSelectedGender(gender){
