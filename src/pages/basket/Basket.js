@@ -7,7 +7,7 @@ import { fetchBrands, fetchDevices, fetchTypes } from '../../http/deviceAPI';
 import "./Basket.css"
 import { Coins, Card, Wallet, Bank, PaymentAtDelivery } from "../../utils/elements"
 import SectionLoading from '../../components/loading/SectionLoading';
-import {initializePeopleSDK} from "../../http/infobipPeople"
+// import {initializePeopleSDK} from "../../http/infobipPeople"
 
 const Basket = observer(() => {
     const { basket, user, device } = useContext(Context)
@@ -16,22 +16,22 @@ const Basket = observer(() => {
 
     useEffect(() => {
         if (user.isAuth) {
-            initializePeopleSDK("ff72a37f5301476f082cdbc60297da8a-be3d0a17-f2bf-460b-b2b8-48196cedec25")
+            // initializePeopleSDK("ff72a37f5301476f082cdbc60297da8a-be3d0a17-f2bf-460b-b2b8-48196cedec25")
             getBasket(user.user.id).then(data => basket.setItems(data))
             fetchTypes().then(data => device.setTypes(data))
             fetchBrands().then(data => device.setBrands(data))
             fetchDevices(null, null, null, null).then(data => device.setDevices(data.rows))
-            if(basket.items.length !== 0){
+            if (basket.items.length !== 0) {
                 window.pe.track("shoppingcartcontainsitemsretail")
             }
         } else {
-            initializePeopleSDK("ff72a37f5301476f082cdbc60297da8a-be3d0a17-f2bf-460b-b2b8-48196cedec25")
+            // initializePeopleSDK("ff72a37f5301476f082cdbc60297da8a-be3d0a17-f2bf-460b-b2b8-48196cedec25")
             const localBasket = JSON.parse(localStorage.getItem("basket"))?.["_items"] || []
             basket.setItems(localBasket)
             fetchTypes().then(data => device.setTypes(data))
             fetchBrands().then(data => device.setBrands(data))
             fetchDevices(null, null, null, null).then(data => device.setDevices(data.rows))
-            if(basket.items.length !== 0){
+            if (basket.items.length !== 0) {
                 window.pe.track("shoppingcartcontainsitemsretail")
             }
         }
@@ -50,16 +50,21 @@ const Basket = observer(() => {
 
     const stripeCheckOut = async () => {
         try {
-            const checkOutURL = await createCheckOutSession(user.user.id)
-            await window.pe.track("shoppingcartcheckoutstartedretail", {carturl: checkOutURL})
-            window.location.href = checkOutURL
+            if (user.user.id) {
+                const checkOutURL = await createCheckOutSession(user.user.id)
+                await window.pe.track("shoppingcartcheckoutstartedretail", { carturl: checkOutURL })
+                window.location.href = checkOutURL
+            }
+            else {
+                window.alert("Please log in first!")
+            }
         } catch (e) {
             console.error(e);
         }
     }
 
     const modifyBasket = async () => {
-        if(user.isAuth === true){
+        if (user.isAuth === true) {
             try {
                 setBasketModify(false)
                 setLoading(true)
@@ -67,27 +72,27 @@ const Basket = observer(() => {
                 const updatedBasketPromises = basket.items.map(async (item) => {
                     return await updateDevice(user.user.id, item.deviceId, item.quantity);
                 });
-    
+
                 const updatedBasket = await Promise.all(updatedBasketPromises);
-    
+
                 // Вероятно, вам нужно что-то сделать с обновленной корзиной, прежде чем ее возвращать
                 // Например, можно объединить элементы корзины в один массив
                 const combinedUpdatedBasket = [].concat(...updatedBasket);
-    
+
                 return combinedUpdatedBasket;
             } catch (e) {
                 console.error(e)
             } finally {
                 setLoading(false)
             }
-        }else{
+        } else {
             try {
                 setBasketModify(false)
                 setLoading(true)
                 localStorage.setItem("basket", JSON.stringify(basket))
-            }catch(e){
+            } catch (e) {
                 console.error(e)
-            }finally{
+            } finally {
                 setLoading(false)
             }
         }

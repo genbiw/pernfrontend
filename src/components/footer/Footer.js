@@ -5,11 +5,15 @@ import instaIcon from "../../assets/insta-icon.png"
 import ytIcon from "../../assets/yt-icon.png"
 import fbIcon from "../../assets/fb-icon.png"
 import vkIcon from "../../assets/vk-icon.png"
+import { useState } from "react"
 
 const Footer = () => {
+ 
+    const [email, setEmail] = useState("")
 
     const subscribeToNews = async() => {
-        await window.pe.track("newslettersubscriptionretail")
+        await window.pe.setPerson({ email: email})
+        await window.pe.track("newsletterRetail")
     }
 
     return ( 
@@ -18,7 +22,7 @@ const Footer = () => {
                 <div className="subscribe-block__title">Stay up to date</div>
                 <div>
                     <div className="subscribe-block__context">Subscribe to the latest updates and be the first to know about new products and special offers</div>
-                    <input className="subscribe-block__input" type="text" name="email" placeholder="Email"/>
+                    <input className="subscribe-block__input" type="text" name="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email"/>
                     <div className="button subscribe-block__button" onClick={subscribeToNews}>Subscribe</div>
                 </div>
             </div>

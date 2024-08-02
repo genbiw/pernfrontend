@@ -91,7 +91,7 @@ const Auth = observer(() => {
                         // All required fields are present, proceed with registration
                         data = await registration(email, phoneNumber, password, userName, age, gender, city, address, country);
                         createPersonData = await createPerson(email, phoneNumber, userName, gender, country, city, address, age);
-                        await window.pe.track("registrationretail");
+                        await window.pe.track("Registration");
                         break;
                 }
             }
