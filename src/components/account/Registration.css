@@ -7,3 +7,10 @@
 .optInCheckBox {
     margin-right: 5px;
 }
+
+.form__input {
+    margin: 10px 0;
+    padding: 5px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+}

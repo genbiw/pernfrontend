@@ -18,8 +18,8 @@ const DevicePage = () => {
     const [data, setData] = useState(null)
 
     useEffect(() => {
-        initializePeopleSDK("ff72a37f5301476f082cdbc60297da8a-be3d0a17-f2bf-460b-b2b8-48196cedec25")
         fetchOneDevices(id).then(data => setDevice(data))
+        window.pe.track("itemViewed", {itemID: id})
     }, [])
 
     const addDeviceToTheBasket = async () => {
@@ -31,6 +31,7 @@ const DevicePage = () => {
 
                 const response = await addDevice(userId, id)
                 setData(response)
+                window.pe.track("addedToCart", {itemID: id})
             } catch (e) {
                 alert(e.response.data.message)
             } finally {
@@ -45,6 +46,7 @@ const DevicePage = () => {
                 }
                 await new Promise(resolve => setTimeout(resolve, 2000))
                 basket.addItem(item)
+                window.pe.track("addedToCart", {itemID: id})
             } catch (e) {
                 alert(e.response.data.message)
             } finally {
