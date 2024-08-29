@@ -63,6 +63,9 @@ const Auth = observer(() => {
                     case !age:
                         window.alert("Enter age");
                         return;
+                    case isNaN(Number(age)) || Number(age) < 1 || Number(age) > 130:
+                        window.alert("Enter a valid age");
+                        return;
                     case !country:
                         window.alert("Enter country");
                         return;
@@ -87,12 +90,36 @@ const Auth = observer(() => {
                     case !phoneNumber:
                         window.alert("Enter phone number");
                         return;
+                    case isNaN(Number(phoneNumber)) || phoneNumber.length < 8 || phoneNumber.length > 17:
+                        window.alert("Enter a valid phone number");
+                        return;
                     default:
                         // All required fields are present, proceed with registration
-                        data = await registration(email, phoneNumber, password, userName, age, gender, city, address, country);
-                        createPersonData = await createPerson(email, phoneNumber, userName, gender, country, city, address, age);
-                        await window.pe.setPerson({ email: email });
-                        await window.pe.track("Registration");
+                        try {
+                            createPersonData = await createPerson(email, phoneNumber, userName, gender, country, city, address, age);
+                            try {
+                                data = await registration(email, phoneNumber, password, userName, age, gender, city, address, country);
+                            } catch (e) {
+                                // Handle error response from backend
+                                if (e.response && e.response.data && e.response.data.message) {
+                                    window.alert(e.response.data.message);
+                                } else {
+                                    window.alert("An unexpected error occurred. Please try again.");
+                                }
+                                return;
+                            }
+                            await window.pe.track("Registration");
+                        }
+                        catch (e) {
+                            // Handle error response from backend
+                            if (e.response && e.response.data && e.response.data.message) {
+                                window.alert(e.response.data.message);
+                            } else {
+                                window.alert("An unexpected error occurred on CDP. Please try again.");
+                            }
+                            return;
+                        }
+
                         break;
                 }
             }

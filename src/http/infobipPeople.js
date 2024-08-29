@@ -38,7 +38,7 @@ export function initializePeopleSDK(apiKey) {
     window.pe.init(apiKey);
 }
 
-export async function createPerson(email, phoneNumber, userName, gender, country, city, address, age) {
+export async function createPerson(email, phoneNumber, userName, gender, country, city, address, age) { 
     const requestData = {
         "firstName": userName,
         "gender": gender.toUpperCase(),
@@ -64,6 +64,6 @@ export async function createPerson(email, phoneNumber, userName, gender, country
         // Add other properties as needed
     };
 
-    const { data } = await $authHostInfobip.post("people/2/persons", requestData);
+    const { data } = await $authHostInfobip.post("/people/2/persons", requestData); 
     return data;
 } 
