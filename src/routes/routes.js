@@ -4,6 +4,7 @@ import Shop from "../pages/shop/Shop"
 import Auth from "../pages/auth/Auth"
 import Device from "../pages/device/DevicePage"
 import PaymentSuccess from "../pages/payment/PaymentSuccess"
+import PaymentCancel from "../pages/payment/PaymentCancel"
 import Account from "../pages/account/Account"
 import { ADMIN_ROUTE, BASKET_ROUTE, DEVICE_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE, PAYMENT_SUCCESS, PAYMENT_CANCEL, ACCOUNT_ROUTE } from "../utils/const"
 
@@ -50,7 +51,7 @@ export const publicRoutes = [
     },
     {
         path: PAYMENT_CANCEL,
-        Component: <PaymentSuccess/>
+        Component: <PaymentCancel/>
     },
 
-]
+] 
