@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../../utils/const';
 import { login, registration } from '../../http/userAPI';
@@ -6,15 +6,12 @@ import { observer } from 'mobx-react-lite';
 import { Context } from '../../index';
 import { SHOP_ROUTE } from "../../utils/const"
 import { Registration, Authorisation } from '../../components/account/Registration';
+import { getLiveChatToken } from '../../http/infobipLivechat'
 import "./Auth.css"
 
-import { initializePeopleSDK, createPerson } from "../../http/infobipPeople"
+import { createPerson } from "../../http/infobipPeople"
 
 const Auth = observer(() => {
-
-    useEffect(() => {
-        initializePeopleSDK("ff72a37f5301476f082cdbc60297da8a-be3d0a17-f2bf-460b-b2b8-48196cedec25")
-    }, [])
 
     const { user } = useContext(Context)
     const location = useLocation()
@@ -37,6 +34,7 @@ const Auth = observer(() => {
     const click = async () => {
         try {
             let data;
+            let liveChatToken;
             let createPersonData;
 
             if (isLogin) {
@@ -50,7 +48,25 @@ const Auth = observer(() => {
                 }
 
                 data = await login(email, password);
+                liveChatToken = (await (getLiveChatToken(email))).token;
+                await window.liveChat('auth', liveChatToken, function (error, result) {
+                    if (error) {
+                        console.error("token is")
+                        console.error(liveChatToken)
+                        // Log the entire error object for better debugging
+                        console.error('Authentication error:', error);
+
+                        // Access error details safely
+                        const errorCode = error.code || 'Unknown Code';
+                        const errorMessage = error.message || 'No message provided';
+                        console.error('Error Details:', errorCode, errorMessage);
+                    } else {
+                        // Authentication successful, proceed with further actions if needed
+                        console.log('Authenticated successfully');
+                    }
+                });
                 await window.pe.setPerson({ email: email });
+
             } else {
                 // Registration validation
                 switch (true) {
@@ -97,6 +113,8 @@ const Auth = observer(() => {
                         // All required fields are present, proceed with registration
                         try {
                             createPersonData = await createPerson(email, phoneNumber, userName, gender, country, city, address, age);
+                            liveChatToken = await (getLiveChatToken(email)).token;
+                            await window.liveChat('auth', liveChatToken);
                             try {
                                 data = await registration(email, phoneNumber, password, userName, age, gender, city, address, country);
                             } catch (e) {

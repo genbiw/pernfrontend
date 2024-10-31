@@ -1,3 +1,5 @@
+import { $authHost } from "./index";
+
 
 (function (I, n, f, o, b, i, p) {
     I[b] = I[b] || function () { (I[b].q = I[b].q || []).push(arguments) };
@@ -23,4 +25,9 @@ export function initializeLCSDK() {
     };
     
     document.head.appendChild(script);
+} 
+
+export async function getLiveChatToken(email) {
+    const { data } = await $authHost.get(`/api/user/getinfobiplctoken?email=${encodeURIComponent(email)}`);
+    return data; 
 }

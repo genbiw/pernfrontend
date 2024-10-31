@@ -39,6 +39,15 @@ const NavBar = observer(() => {
         user.setIsAuth(false)
         localStorage.removeItem('token')
         await window.pe.forgetPerson()
+        await window.liveChat('logout', null, function (error, result) {
+            if (error) {
+                // Handle error during logout
+                console.error('Logout error:', error.code, error.message);
+            } else {
+                // Logout successful, proceed with any further actions if needed
+                console.log('Logged out successfully');
+            }
+        });        
         navigate(SHOP_ROUTE)
     }
 

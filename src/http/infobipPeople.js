@@ -66,4 +66,4 @@ export async function createPerson(email, phoneNumber, userName, gender, country
 
     const { data } = await $authHostInfobip.post("/people/2/persons", requestData); 
     return data;
-} 
+}
